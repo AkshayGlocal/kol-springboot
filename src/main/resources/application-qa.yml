@@ -1,0 +1,25 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+spring:
+  datasource:
+    password: postgres
+    url: jdbc:postgresql://database-1.c0mjkg3tywic.us-east-2.rds.amazonaws.com:5432/kol
+    username: postgres
+    host_name: database-1.c0mjkg3tywic.us-east-2.rds.amazonaws.com
+    database_name: kol
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+constants:
+  url:
+    "http://localhost:8080"
+  react_app:
+    "http://localhost:3000"

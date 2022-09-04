@@ -1,0 +1,23 @@
+node{
+	def WORKSPACE = "/var/lib/jenkins/workspace/kol-backend/"
+	def dockerImageTag = "kol-backend${env.BUILD_NUMBER}"
+	
+	try{
+		stage('Github clone'){
+				git credentialsId: 'github-pass',
+				 url: 'https://github.com/AkshayGlocal/KOL-Backend.git',
+					branch: 'master'
+			}
+		stage('Docker Build'){
+				dockerImage = docker.build("kol-backend:${env.BUILD_NUMBER}")		
+			}
+		stage('Docker Deploy'){
+				echo "Docker Image Tag Name: ${dockerImageTag}"
+				sh "docker stop kol-backend || true && docker rm kol-backend || true"
+				sh "docker run --name kol-backend -d -p 9090:8081 kol-backend:${env.BUILD_NUMBER}"
+			}
+	}catch(e){
+		throw e
+	}
+	
+}

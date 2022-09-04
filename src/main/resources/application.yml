@@ -1,0 +1,26 @@
+server:
+  error:
+    include-message: always
+    include-binding-errors: always
+
+spring:
+  profiles:
+    active:
+      dev
+  mail:
+    default-encoding: UTF-8
+    host: smtp.gmail.com
+    username: akshay.a@glocalmind.com
+    password: qgdrjniravazukhl
+    port: 587
+    properties:
+      mail:
+        smtp:
+          ssl:
+            trust: "*"
+          auth: true
+          starttls:
+            enable: true
+    protocol: smtp
+    test-connection: false
+
